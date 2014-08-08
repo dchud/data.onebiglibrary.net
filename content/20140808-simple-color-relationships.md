@@ -153,3 +153,142 @@ physical interactions designed into his text (which the Yale Press' folks
 very creatively transposed to the iPad app) but perhaps we can use the
 dynamic aspect of the web, made so easy by d3, usefully to embody some
 of the same lessons he taught.
+
+
+#### Lighter and/or darker
+
+To focus us in on light intensity, Albers presents several exersizes
+in subtle and not-so-subtle gradations of light. SVG's gradient support
+should help to recreate them.
+
+<div id='light-stripes'></div>
+<script>
+var width = 450, height = 700;
+var svg = d3.select("#light-stripes").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+// basic gradient
+var gradient_up = svg.append("svg:defs")
+    .append("svg:linearGradient")
+        .attr("id", "gradient_up")
+        .attr("x1", "0%")
+        .attr("y1", "0%")
+        .attr("x2", "0%")
+        .attr("y2", "100%");
+gradient_up.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#222")
+    .attr("stop-opacity", 1);
+gradient_up.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "#ddd")
+    .attr("stop-opacity", 1);
+// now the opposite; perhaps a transform instead?
+var gradient_down = svg.append("svg:defs")
+    .append("svg:linearGradient")
+        .attr("id", "gradient_down")
+        .attr("x1", "0%")
+        .attr("y1", "100%")
+        .attr("x2", "0%")
+        .attr("y2", "0%");
+gradient_down.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#222")
+    .attr("stop-opacity", 1);
+gradient_down.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "#ddd")
+    .attr("stop-opacity", 1);
+
+// the frame
+var outer = svg.append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", width)
+    .attr("height", height)
+    .attr("fill", "#888");
+// the inner "background"
+var inner = svg.append("rect")
+    .attr("x", 10)
+    .attr("y", 10)
+    .attr("width", width-20)
+    .attr("height", height-20)
+    .style("fill", "url(#gradient_up)");
+
+var bar_width = (width-20) / 19;
+
+var x_scale = d3.scale.linear()
+    .domain([0, 18])
+    .range([10, width-10-bar_width]);
+
+// the "foreground"
+for(var i=0; i<19; i++) {
+    if(i % 2) {
+        var barup = svg.append("rect")
+            .attr("x", x_scale(i))
+            .attr("y", 10)
+            .attr("width", bar_width)
+            .attr("height", height-20);
+        barup.style("fill", "url(#gradient_down)");
+    }
+}
+</script>
+
+This really comes alive as the intensity of the two gradients pass
+each other on the way up/down. It all seems to merge!  And little
+shadows seem to appear around the frame at the top and bottom just
+past the strips' ends.
+
+The gradients above are explicit. In this next example from Albers,
+the gradients are illusions.
+
+<div id='gradations'></div>
+<script>
+var width = 300, height = 700;
+var svg = d3.select("#gradations").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+// the frame
+var outer = svg.append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", width)
+    .attr("height", height)
+    .attr("fill", "#888");
+
+var bar_width = (width - 60) / 2;
+var bar_height = (height-20) / 17;
+
+var y_scale = d3.scale.linear()
+    .domain([0, 16])
+    .range([height-20-bar_height, 20]);
+var color_scale = d3.scale.linear()
+    .domain([0, 16])
+    .range(['#222', '#ddd']);
+
+// the panels
+for(var i=0; i<17; i++) {
+    var panel= svg.append("rect")
+        .attr("x", 20)
+        .attr("y", y_scale(i))
+        .attr("width", bar_width)
+        .attr("height", bar_height)
+        .style("fill", color_scale(i));
+    var panel= svg.append("rect")
+        .attr("x", (width/2) + 10)
+        .attr("y", y_scale(i))
+        .attr("width", bar_width)
+        .attr("height", bar_height)
+        .style("fill", color_scale(i));
+}
+</script>
+
+
+Every one of the individual rectangles above is a solid color, even
+though it looks like each has its own gradient. It's the effect of the 
+proximity to slightly lighter and darker colors above and below that
+makes the contrasts between them appear to form two ends of a gradient
+in each rectangle.
+
+To my eye, it seems to be most pronounced in the corners.
