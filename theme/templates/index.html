@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content_title %}{% endblock %}
+{% block content %}
+{% if articles %}
+<div class='container'>
+    {% for article in (articles_page.object_list if articles_page else articles) %}
+
+    <div class='row span7'>
+        <h4>
+            <span class='pull-left'><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></span>
+            <span class='pull-right'>{{ article.locale_date }}</span>
+        </h4>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock content %}

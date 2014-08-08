@@ -1,0 +1,7 @@
+fabric
+ipython
+markdown
+pelican
+pyzmq
+s3cmd
+tornado

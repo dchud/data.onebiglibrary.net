@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block content %}
+<section id="content">
+    <article>
+        <header>
+            <h2>{{ article.title}}</h2>
+            {% include 'twitter.html' %}
+            {{ date }}
+        </header>
+        <div class="entry-content">
+        {{ article.content }}
+        </div><!-- /.entry-content -->
+    </article>
+
+<hr>
+{% for a in articles %}
+    {% if a == article %}
+        <h4>
+        {% if not loop.last %}
+        {% set loop_prev = loop.index0 + 1 %}
+        {% set prev_article = articles[loop_prev] %}
+        <span class='pull-left'>
+            <i class='fa fa-angle-left fa-lg'></i>
+            <em class='small'>previous</em>
+            <a href="{{ SITEURL }}/{{ prev_article.url }}">{{ prev_article.title }}</a>
+        </span>
+        {% endif %}
+
+        {% if not loop.first %}
+        {% set loop_next = loop.index0 - 1 %}
+        {% set next_article = articles[loop_next] %}
+        <span class='pull-right'>
+            <a href="{{ SITEURL }}/{{ next_article.url }}">{{ next_article.title }}</a>
+            <em class='small'>next</em>
+            <i class='fa fa-angle-right fa-lg'></i>
+        </span>
+        {% endif %}
+        </h4>
+    {% endif %}
+{% endfor %}
+
+</section>
+
+{% endblock %}

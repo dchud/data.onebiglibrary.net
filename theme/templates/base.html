@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="{{ AUTHOR }}">
+
+    <!-- Le styles -->
+    <!--
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootstrap.min.css" type="text/css" />
+    -->
+    <style type="text/css">
+        div.entry-content {
+            padding: 0;
+        }
+    </style>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/theme/css/bootstrap.min.readable.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/theme/css/pygments.css" rel="stylesheet">
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="{{ SITEURL }}/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="{{ SITEURL }}/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ SITEURL }}/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ SITEURL }}/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
+    {% if FEED_RSS %}
+    <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    {% endif %}
+
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="{{ SITEURL }}/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </head>
+
+    <body>
+        <div class='container'>
+            <div class='page-header row'>
+                <h3>data.onebiglibrary.net</h3>
+                <h4>
+                <a href='/' alt='index' title='index'><i class='fa fa-home fa-lg'></i></a>
+                <i class='fa fa-angle-right'></i>
+                <a href='/feeds/dchud.atom.xml' alt='feed' title='feed'><i class='fa fa-rss fa-lg'></i></a>
+                <i class='fa fa-angle-right'></i>
+                <a href='/about.html'>about</a>
+                <i class='fa fa-angle-right'></i>
+                <a href='/colophon.html'>colophon</a>
+                <i class='fa fa-angle-right'></i>
+                <a href='https://twitter.com/dchud' alt='twitter' title='twitter'><i class='fa fa-twitter fa-lg'></i></a>
+                <i class='fa fa-angle-right'></i>
+                <a href='https://github.com/dchud' alt='github' title='github'><i class='fa fa-github fa-lg'></i></a>
+                </h4>
+            </div>
+
+            <div class="row" id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+
+
+    {% include 'analytics.html' %}
+    {% include 'piwik.html' %}
+    {% include 'disqus_script.html' %}
+
+  </body>
+</html>
