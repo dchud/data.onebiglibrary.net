@@ -1,7 +1,7 @@
 Title:      simple color relationships w/d3
 
 
-I've started reading Josef Albers' [Interaction of
+I've been reading Josef Albers' [Interaction of
 Color](http://yupnet.org/interactionofcolor/) (Yale Press's iPad
 edition) and am learning quite a lot from it. I particularly enjoy
 his details about what to expect in student reactions to particular
