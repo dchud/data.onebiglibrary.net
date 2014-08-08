@@ -5,7 +5,7 @@
     <article>
         <header>
             <h2>{{ article.title}}</h2>
-            <p>Published {{ article.date.strftime('%x') }}</p>
+            <p class='small'>Published {{ article.date.strftime('%x') }}</p>
         </header>
         <div class="entry-content">
         {{ article.content }}

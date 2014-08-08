@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 AUTHOR = u'dchud'
 SITENAME = u'data.onebiglibrary.net'
-SITEURL = 'http://localhost:8000'
-#SITEURL = 'http://data.onebiglibrary.net'
+#SITEURL = 'http://localhost:8000'
+SITEURL = 'http://data.onebiglibrary.net'
 
 PATH = 'content'
 
