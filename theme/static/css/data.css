@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    font-family: "Lora", Georgia, "Times New Roman", Times, serif;
+    font-size: 17px;
+    line-height: 26px;
+    color: #333333;
+    background-color: #fcfcfc;
+}
+
+a {
+    color: #4582ec;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #4582ec;
+    text-decoration: underline;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.page-header {
+    padding-bottom: 4px;
+    margin: 26px 0 19px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+article header {
+    margin-bottom: 2em;
+}
+
+h1, h2, h3 {
+    line-height: 34px;
+}
+#content.row {
+    margin-left: 0px;
+}
+
+[class*="span"] {
+    float: left;
+    min-height: 1px;
+    margin-left: 0px;
+}

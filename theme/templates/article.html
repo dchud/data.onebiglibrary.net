@@ -5,8 +5,7 @@
     <article>
         <header>
             <h2>{{ article.title}}</h2>
-            {% include 'twitter.html' %}
-            {{ date }}
+            <p>Published {{ article.date.strftime('%x') }}</p>
         </header>
         <div class="entry-content">
         {{ article.content }}

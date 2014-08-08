@@ -2,11 +2,11 @@ Title:      testing raw html markup
 
 This is a test of raw html.
 
-# This is a markdown h1.
+### This is a markdown h3.
 
-<h1>This is a raw html h1.</h1>
+<h3>This is a raw html h1.</h3>
 
-# A test of D3 loading / execution
+#### A test of D3 loading / execution
 
 Below this is raw html to load d3 and draw something.
 
