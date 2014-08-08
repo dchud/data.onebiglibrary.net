@@ -23,6 +23,7 @@ a:focus {
     padding-left: 0px;
     margin-right: auto;
     margin-left: auto;
+    max-width: 90%;
 }
 
 .page-header {
