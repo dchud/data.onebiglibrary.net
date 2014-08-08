@@ -2,10 +2,24 @@
 {% block title %}{{ article.title }}{% endblock %}
 {% block content %}
 <section id="content">
+    <script>
+    function edit_link () {
+        var github_base = "https://github.com/dchud/data.onebiglibrary.net/edit/master/content/";
+        var path = "{{ article }}";
+        var path_segments = path.split('/');
+        var basename = path_segments[path_segments.length-1];
+        var href = github_base + basename ;
+        return href;
+    }
+    </script>
     <article>
         <header>
             <h2>{{ article.title}}</h2>
-            <p class='small'>Published {{ article.date.strftime('%x') }}</p>
+            <p class='small'>
+                Published {{ article.date.strftime('%x') }}
+                <i class='fa fa-angle-right'></i>
+                <a href='javascript:open(edit_link());' alt='edit' title='edit'><i class='fa fa-edit fa-lg'></i></a>
+            </p>
         </header>
         <div class="entry-content">
         {{ article.content }}
