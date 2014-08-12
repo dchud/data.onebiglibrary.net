@@ -5,8 +5,8 @@ I've been reading Josef Albers' [Interaction of
 Color](http://yupnet.org/interactionofcolor/) (Yale Press's iPad
 edition) and am learning quite a lot from it. I particularly enjoy
 his details about what to expect in student reactions to particular
-exercises; you know he must have anticipated these reactions each
-time, with every class.
+exercises; you know he must have anticipated and savored these
+reactions each time, with every class.
 
 The basic principles of the first few chapters should be easy to
 demonstrate using [d3](http://d3js.org/).
@@ -289,6 +289,4 @@ Every one of the individual rectangles above is a solid color, even
 though it looks like each has its own gradient. It's the effect of the 
 proximity to slightly lighter and darker colors above and below that
 makes the contrasts between them appear to form two ends of a gradient
-in each rectangle.
-
-To my eye, it seems to be most pronounced in the corners.
+in each rectangle. It seems to be most pronounced in the corners.
