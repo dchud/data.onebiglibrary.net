@@ -20,6 +20,8 @@ CATEGORY_FEED_ATOM = None
 TAG_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
+STATIC_PATHS = ['images']
+
 # Blogroll
 #LINKS = (('Pelican', 'http://getpelican.com/'),
 #         ('Python.org', 'http://python.org/'),
