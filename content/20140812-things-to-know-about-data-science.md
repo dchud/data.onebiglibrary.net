@@ -235,6 +235,23 @@ of these steps, knowing which tests to run on results. Every model
 has its own characteristics.
 
 
+## Applying tools
+
+In some cases, there are straightforward models that can be applied
+with straightforward tools. For example, this is a time series of 
+the amount of recent airline travel in the US. In just a few lines 
+of R, you can produce this decomposition of seasonal and trend lines:
+
+![time series decomposition]({filename}images/20140812-things/ts-decomp.png)
+
+This is wonderful, but keep in mind that there is always more to the
+story. The simplest-seeming models and tools often require a lot of
+subtlety to wield reliably well.
+
+For more on this particular example, see [Using R for Time Series
+Analysis](http://a-little-book-of-r-for-time-series.readthedocs.org/en/latest/src/timeseries.html).
+
+
 
 ## Learning the craft
 
