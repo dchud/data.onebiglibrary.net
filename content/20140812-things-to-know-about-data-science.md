@@ -1,6 +1,6 @@
 Title:      7±2 things to know about data science
 
-<em>For code4lib DC 2014.</em>
+<em>For a talk given at code4lib DC 2014.</em>
 
 
 ## Background
@@ -240,7 +240,7 @@ has its own characteristics.
 
 On this part I'm shaky, but my hunch is that like learning to be a
 competent programmer, applying meaningful data science reliably
-well is a craft that take time to learn. It took me a good five
+well is a craft that takes time to learn. It took me a good five
 years to learn many basic lessons about programming that no CS prof
 ever taught me (granted, I don't have a CS degree, but I've taken
 many of the basic courses in formal settings). After five years, I
@@ -256,7 +256,7 @@ of intuitive feel for choosing models, checking assumptions, and
 explaining results. It's that "good sense" I know I need to strive
 for, but I don't have it yet. Before I start applying any of this
 on data in my workplace, I'll be sure to find someone more experienced
-than me to run ideas by, someone who knows the craft already.
+than me to run ideas by, someone who knows the craft well already.
 
 
 ## What can we do to help?
