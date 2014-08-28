@@ -594,7 +594,7 @@ make all the more sense.
 
 I am about halfway through the text and could use a lot more d3
 practice, so before I move on to rendering data more explicitly I
-made take a stab at a "part two" post along these same lines.
+might take a stab at a "part two" post along these same lines.
 
 If any of the specifics interest you I'd suggest you look at the 
 source directly in your browser or using the github links to view
