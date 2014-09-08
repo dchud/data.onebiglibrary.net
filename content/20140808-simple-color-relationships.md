@@ -603,5 +603,5 @@ feeding into [pelican](http://blog.getpelican.com/). Pull requests
 welcome, especially if you spot mistakes or just plain bad ideas,
 I know I still have a lot to learn.
 
-(See also part two, [Albers color studies, part
+(See also part two, [Albers color studies in D3.js, part
 2](http://data.onebiglibrary.net/2014/09/04/albers-color-studies-part-2/))

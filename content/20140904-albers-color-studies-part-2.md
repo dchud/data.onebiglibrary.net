@@ -1,4 +1,4 @@
-Title: Albers color studies, part 2
+Title: Albers color studies in D3.js, part 2
 
 
 (See also part one, [simple color relationships
