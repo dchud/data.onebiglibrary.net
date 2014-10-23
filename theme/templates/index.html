@@ -2,12 +2,12 @@
 {% block content_title %}{% endblock %}
 {% block content %}
 {% if articles %}
-<div class='row span7'>
+<div class='row span9'>
     {% for article in (articles_page.object_list if articles_page else articles) %}
 
     <h4>
-        <span class='pull-left'><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></span>
-        <span class='pull-right'>{{ article.locale_date }}</span>
+        <span class='span7'><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></span>
+        <span class='span2'><code>{{ article.locale_date }}</code></span>
     </h4>
     {% endfor %}
 </div>

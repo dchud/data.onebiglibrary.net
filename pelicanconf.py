@@ -20,7 +20,7 @@ CATEGORY_FEED_ATOM = None
 TAG_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
-STATIC_PATHS = ['images']
+STATIC_PATHS = ['data', 'images']
 
 # Blogroll
 #LINKS = (('Pelican', 'http://getpelican.com/'),
@@ -55,8 +55,10 @@ PAGE_SAVE_AS = '{slug}.html'
 YEAR_ARCHIVE_SAVE_AS = '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 
+ARCHIVES_SAVE_AS = ''
 AUTHORS_SAVE_AS = ''
 CATEGORIES_SAVE_AS = ''
+TAGS_SAVE_AS = ''
 
 DISPLAY_PAGES_ON_MENU = False
 DISPLAY_CATEGORIES_ON_MENU = False
