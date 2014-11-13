@@ -559,6 +559,9 @@ The plot itself should be straightforward, with the normal quantiles
 and observed values on the x- and y-axis, respectively, and a normal
 line running through it all.
 
+Because the axes and points are moving around so much, we'll add
+a simple title label and update it as we switch plots.
+
 <div id='fig4'></div>
 <style>
 .label {
