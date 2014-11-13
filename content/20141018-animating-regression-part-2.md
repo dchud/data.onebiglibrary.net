@@ -549,4 +549,294 @@ throwing the value out.
 
 #### Adding the Q-Q Plot
 
-TBD.
+To add the [Q-Q plot](http://en.wikipedia.org/wiki/Q%E2%80%93Q_plot)
+we have to calculate the quantile of each value and plot that against
+normal quantiles. To make it work with the animation loop, though,
+we further have to sort the quantiles and plot them all in the
+correct order.
+
+The plot itself should be straightforward, with the normal quantiles
+and observed values on the x- and y-axis, respectively, and a normal
+line running through it all.
+
+<div id='fig4'></div>
+<style>
+.label {
+    font-family: sans-serif;
+    font-variant: small-caps;
+    font-weight: normal;
+    font-size: x-large;
+}
+</style>
+<script>
+var data4 = [
+    {"cooks": 0.0267, "error": -3.0, "q": -1.522, 
+        "index": 0, "raw": 15, "qqindex": 0},
+    {"cooks": 0.0445, "error": -5.036, "q": -1.3009, 
+        "index": 1, "raw": 22, "qqindex": 1},
+    {"cooks": 0.0047, "error": -2.072, "q": -0.9218, 
+        "index": 2, "raw": 34, "qqindex": 2},
+    {"cooks": 0.045, "error": 7.892, "q": -0.3216,
+        "index": 3, "raw": 53, "qqindex": 4},
+    {"cooks": 0.0202, "error": -6.144, "q": -0.4796,
+        "index": 4, "raw": 48, "qqindex": 3},
+    {"cooks": 0.0048, "error": -3.18, "q": -0.1005, 
+        "index": 5, "raw": 60, "qqindex": 5},
+    {"cooks": 0.2774, "error": 22.784, "q": 1.0051, 
+        "index": 6, "raw": 95, "qqindex": 7},
+    {"cooks": 0.0037, "error": -2.252, "q": 0.4997, 
+        "index": 7, "raw": 79, "qqindex": 8},
+    {"cooks": 0.0057, "error": -2.288, "q": 0.784, 
+        "index": 8, "raw": 88, "qqindex": 10},
+    {"cooks": 0.1642, "error": 9.676, "q": 1.4473, 
+        "index": 9, "raw": 109, "qqindex": 6},
+    {"cooks": 0.7934, "error": -16.36, "q": 0.9103, 
+        "index": 10, "raw": 92, "qqindex": 9}
+    ];
+var qnorm = [-1.383, -0.967, -0.674, -0.431, -0.210, 0.0, 0.210, 0.431,
+    0.674, 0.967, 1.383];
+var xbar = 63.182;
+var min_raw4 = d3.min(data4, function(d) { return d.raw; });
+var max_raw4 = d3.max(data4, function(d) { return d.raw; });
+var max_residual4 = d3.max(data4, function(d) { return Math.abs(d.error); });
+var max_cooks4 = d3.max(data4, function(d) { return d.cooks; });
+var max_q = d3.max(data4, function(d) { return Math.abs(d.q); });
+var max_qnorm = d3.max(qnorm);
+var buffer = 1.1;
+
+if (max_cooks4 >= 0.5) {
+    if (max_cooks4 >= 1.1) {
+        ;
+    } else {
+        max_cooks4 = 1.1;
+    }
+};
+
+var fig4 = d3.select("#fig4").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var x4 = d3.scale.linear()
+    .domain([0, data4.length])
+    .range([padding, width - padding]);
+var x_qnorm4 = d3.scale.linear()
+    .domain([-max_qnorm * buffer, max_qnorm * buffer])
+    .range([padding, width - padding]);
+var y4 = d3.scale.linear()
+    .domain([min_raw4, max_raw4])
+    .range([height - padding, padding]);
+var y_residuals4 = d3.scale.linear()
+    .domain([-max_residual4, max_residual4])
+    .range([height - padding, padding]);
+var y_cooks4 = d3.scale.linear()
+    .domain([0, max_cooks4])
+    .range([height - padding, padding]);
+var y_q4 = d3.scale.linear()
+    .domain([-max_q * buffer, max_q * buffer])
+    .range([height - padding, padding]);
+
+var x_axis4 = d3.svg.axis()
+    .orient("bottom")
+    .scale(x4);
+var x_qnorm_axis4 = d3.svg.axis()
+    .orient("bottom")
+    .scale(x_qnorm4);
+var y_axis4 = d3.svg.axis()
+    .orient("left")
+    .scale(y4);
+var y_residuals_axis4 = d3.svg.axis()
+    .orient("left")
+    .scale(y_residuals4);
+var y_cooks_axis4 = d3.svg.axis()
+    .orient("left")
+    .scale(y_cooks4);
+var y_q_axis4 = d3.svg.axis()
+    .orient("left")
+    .scale(y_q4);
+
+var g4 = fig4.selectAll("g")
+    .data(data4)
+    .enter().append("g")
+    .attr("class", "object");
+
+fig4.append("line")
+    .attr("id", "line4")
+    .attr("x1", x4(0))
+    .attr("y1", y4(intercept))
+    .attr("x2", x4(11))
+    .attr("y2", y4(expected(11)))
+    .attr("stroke-width", 2)
+    .attr("stroke", "steelblue");
+
+g4.each(function(d, i) {
+    var o = d3.select(this);
+    o.attr("class", "observation");
+    o.append("line")
+        .attr("x1", x4(i))
+        .attr("y1", y4(d.raw))
+        .attr("x2", x4(i))
+        .attr("y2", y4(expected(i)))
+        .attr("class", "residual-bar")
+        .attr("stroke-width", 0)
+        .attr("stroke", "gray");
+    o.append("circle")
+        .attr("r", 5)
+        .attr("cx", x4(i))
+        .attr("cy", y4(d.raw))
+        .attr("class", "data-point")
+        .attr("stroke", "black")
+        .attr("fill", "darkslategrey");
+});
+
+fig4.append("g")
+    .attr("id", "x_axis4")
+    .attr("class", "axis")
+    .attr("transform", "translate(0, " + (height - padding) + ")")
+    .call(x_axis4);
+fig4.append("g")
+    .attr("id", "y_axis4")
+    .attr("class", "axis")
+    .attr("transform", "translate(" + padding + ", 0)")
+    .call(y_axis4);
+
+fig4.append("text")
+    .attr("id", "label")
+    .attr("class", "label")
+    .attr("x", 40)
+    .attr("y", 40)
+    .text("model fit");
+
+setTimeout(residual4, delay);
+
+function fit4() {
+    label = fig4.select("#label").transition()
+        .duration(duration)
+        .text("fit model");
+
+    line = fig4.select("#line4").transition()
+        .duration(duration)
+        .attr("y1", y4(intercept))
+        .attr("y2", y4(expected(11)));
+
+    var c = fig4.selectAll(".observation");
+    c.each(function(d, i) {
+        var o = d3.select(this);
+        o.select(".residual-bar").transition()
+            .duration(duration)
+            .attr("x1", x4(i))
+            .attr("y1", y4(d.raw))
+            .attr("y2", y4(expected(i)))
+            .attr("stroke-width", 0);
+        o.select(".data-point").transition()
+            .duration(duration)
+            .attr("cx", x4(i))
+            .attr("cy", y4(d.raw));
+    });
+
+    fig4.select("#x_axis4").transition()
+        .duration(duration)
+        .call(x_axis4);
+    fig4.select("#y_axis4").transition()
+        .duration(duration)
+        .call(y_axis4);
+
+    setTimeout(residual4, delay + duration);
+};
+
+function residual4() {
+    label = fig4.select("#label").transition()
+        .duration(duration)
+        .text("residuals");
+
+    line = fig4.select("#line4").transition()
+        .duration(duration)
+        .attr("y1", y_residuals4(0))
+        .attr("y2", y_residuals4(0));
+
+    var c = fig4.selectAll(".observation");
+    c.each(function(d, i) {
+        var o = d3.select(this);
+        o.select(".data-point").transition()
+            .duration(duration)
+            .attr("cy", y_residuals4(d.error));
+        o.select(".residual-bar").transition()
+            .duration(duration)
+            .attr("y1", y_residuals4(d.error))
+            .attr("y2", y_residuals4(0))
+            .attr("stroke-width", 3);
+    });
+
+    fig4.select("#y_axis4").transition()
+        .duration(duration)
+        .call(y_residuals_axis4);
+
+    setTimeout(cooks4, delay + duration);
+};
+
+function cooks4() {
+    label = fig4.select("#label").transition()
+        .duration(duration)
+        .text("cook's distance");
+
+    line = fig4.select("#line4").transition()
+        .duration(duration)
+        .attr("y1", y_cooks4(1))
+        .attr("y2", y_cooks4(1));
+
+    var c = fig4.selectAll(".observation");
+    c.each(function(d, i) {
+        var o = d3.select(this);
+        o.select(".data-point").transition()
+            .duration(duration)
+            .attr("cy", y_cooks4(d.cooks));
+        o.select(".residual-bar").transition()
+            .duration(duration)
+            .attr("y1", y_cooks4(d.cooks))
+            .attr("y2", y_cooks4(0));
+    });
+
+    fig4.select("#y_axis4").transition()
+        .duration(duration)
+        .call(y_cooks_axis4);
+
+    setTimeout(qq4, delay + duration);
+}
+
+function qq4() {
+    label = fig4.select("#label").transition()
+        .duration(duration)
+        .text("q-q normal vs. observed");
+
+    line = fig4.select("#line4").transition()
+        .duration(duration)
+        .attr("y1", y_q4(-max_q))
+        .attr("y2", y_q4(max_q));
+
+    var sorted = data4.sort(function(a, b) { return a.q - b.q; });
+    var c = fig4.selectAll(".observation");
+    c.each(function(d, i) {
+        var o = d3.select(this);
+        o.select(".data-point").transition()
+            .duration(duration)
+            .attr("cx", x_qnorm4(qnorm[i]))
+            .attr("cy", y_q4(sorted[i].q));
+        o.select(".residual-bar").transition()
+            .duration(duration)
+            .attr("stroke-width", 0);
+    });
+
+    fig4.select("#x_axis4").transition()
+        .duration(duration)
+        .call(x_qnorm_axis4);
+    fig4.select("#y_axis4").transition()
+        .duration(duration)
+        .call(y_q_axis4);
+
+    setTimeout(fit4, delay + duration);
+}
+</script>
+
+That rounds out the sketch.
+
+Now: to clean this up enough to be able to use it to render multiple
+regressions side-by-side. Stay tuned...
