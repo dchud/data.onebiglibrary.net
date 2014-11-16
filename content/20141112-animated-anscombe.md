@@ -1,4 +1,4 @@
-Title:  animated Anscombe
+Title:  animating Anscombe's Quartet regression diagnostics
 
 Using the sketch developed in animating regression parts
 [1](http://data.onebiglibrary.net/2014/09/18/animating-regression/) and
@@ -8,29 +8,31 @@ Quartet](http://en.wikipedia.org/wiki/Anscombe's_quartet). What
 makes these datasets useful, as wikipedia points out, is their
 near-equivalent stats: the x and y sets share the same mean, sample
 variance, correlation and simple linear regression model. It's
-instructive as a clear example of what to watch out for.
+instructive as a clear example of what to watch out for when
+developing simple linear regressions, and the issues each dataset
+highlights come clear in the different diagnostic plots.
 
-The challenge here is to use the sketch developed in part 2 four
-times. That code is a mess; it reflects my learning process, but
-it's not anything I'd want to reuse. The simplest approach to solving
-this is to turn the viz element into a [reusable
-chart](http://bost.ocks.org/mike/chart/) (to-read also: [Exploring
+The technical challenge here is to use the sketch developed in part
+2 four times. That code is a mess; it reflects my learning process,
+but it's not anything I'd want to reuse. The simplest approach to
+solving this is to turn the viz element into a [reusable
+chart](http://bost.ocks.org/mike/chart/) (and to-read: [Exploring
 Reusability with D3.js](http://bocoup.com/weblog/reusability-with-d3/))
 
 I'm under several class deadlines just now, so I won't go as far
 as possible in making this nice and cleanly configurable and
 modifiable, but I certainly don't want to write the same code out
 four times, so I'll look for a middle ground that achieves some
-code cleanup and a minimum of reuse.
+code cleanup and a modicum of reuse.
 
 First off, we need to pull the source data into this page. The
 Anscombe datasets and their summary statistics are readily available,
 but their linear model residuals and cook's distance values require
-a little computing. There are javascript stats libraries that can
+a little calculation. There are javascript stats libraries that can
 handle the regression, but they don't seem to ship with a cook's
 distance implementation. (to-do: pull request.) Fortunately R ships
-with the data pre-loaded, and it's easy to put all this together
-and draw it out as JSON for easy use here:
+with the anscombe data pre-loaded, and it's easy to put all this
+together and draw it out as JSON for easy use here:
 
     library(rjson)
     a1 <- data.frame(anscombe$x1, anscombe$y1)
@@ -50,13 +52,15 @@ and draw it out as JSON for easy use here:
 
 This can be written to a file for later use, like here.
 
-I've made the following changes to the chart:
+The plan is to make at least these following changes to the chart:
 
- * function regcycle() is the reusable chart
+ * define function `regcycle()` as the reusable chart and invoke it 
+ four times
  * instead of creating multiple scales and axes, rewrite each within
-each plot/view mode function instead
+each plot/view mode function instead so they're self-contained
  * move the axis updates to the top of each plot function
- * load the source Anscombe data using a `d3.json()` callback
+ * load the source Anscombe data and initialize the charts using a 
+`d3.json()` callback
  * bind the selections and the data to each of the four charts
 
 Let's see how it goes.
@@ -463,3 +467,102 @@ d3.json("/data/20141112-animating-anscombe.json", function(data) {
 });
 </script>
 
+This seems about right. Some additional changes proved necessary:
+
+ * color! highlighting each data point with a color from the [color
+ brewer](http://colorbrewer2.org/) "spectral" should support a
+ viewer's ability to follow any specific observation through the
+ four plots.
+
+ * the JSON output from R I described above was more awkward to
+ work with than a more row- or observation-oriented dataset shape,
+ so there's a quick reshaping step. This results in simple references
+ to the data values.
+
+        // reshape the data into observations
+        for (i=0; i < seldata.x.length; i++) {
+            var obs = {
+                x: seldata.x[i],
+                y: seldata.y[i],
+                residual: seldata.error[i], 
+                cooks: seldata.cooks[i],
+                quantile: seldata.quantile[i],
+            };
+            data.push(obs); 
+        };
+
+ * the Cook's Distance calculation for dataset four results in a
+ NaN value for the far-right value, so I added a check for that to
+ result in shooting the data point straight up way off the viewpane.
+ This is perhaps not viable statistically but it feeds the animation
+ well, specifically in the transition to the Q-Q plot, making the
+ story told clearer to my eye. Following the bottom right pane,
+ watch the green dot snap back into place at the very end of the
+ transition to Q-Q and you get the effect.  The data check for the
+ NaN is simple but effective:
+
+        var c = svg.selectAll(".observation");
+        c.each(function(d, i) {
+            var o = d3.select(this);
+            o.select(".data-point").transition()
+                .duration(duration)
+                .attr("cx", x(i + 1))
+                .attr("cy", y(isNaN(d.cooks) ? 50 : d.cooks));
+            o.select(".residual-bar").transition()
+                .duration(duration)
+                .attr("x1", x(i + 1))
+                .attr("y1", y(isNaN(d.cooks) ? 50 : d.cooks))
+                .attr("x2", x(i + 1))
+                .attr("y2", y(0));
+        });
+
+ * added a 1.1 buffer factor around the input domain for several
+ of the axes to draw the data inside the axis lines.
+
+ * bringing the residual and distance bars into the two relevant
+ plots proved to require more attention. because the data points
+ move around, the bars can be left in a position from an earlier
+ plot that doesn't make sense two plots later. that could lead to
+ the bars whooshing in from odd angles as they reappear, which is
+ awkward, detracting from the intended narrative. This temporary
+ mistake evokes that awkwardness:
+
+ ![this temporary mistake]({filename}images/20141112-anscombe-error.png) 
+
+
+### Left as an exercise for the writer
+
+There are several unresolved issues I would like to revisit:
+
+ * synchronizing the transitions among four different chart instances
+ doesn't seem to have a single obvious solution. you can see them fall
+ out of sync if you want the cycle long enough, and avoiding that might
+ require some sort of clock check or simple communication pattern. even
+ so, the eye can only meaningfully follow one plot at a time, so it
+ doesn't ruin the effect, and if you believe google analytics few readers
+ spend more than one minute per page on this site, so it's not a serious
+ problem here, now.
+
+ * i can see case for pulling the axis resetting back out of the
+ individual plot modes again; it's a little cumbersome to keep
+ reassigning each time.  on the other hand, this way all the logic
+ for a plot is self-contained, so it would feel a little cleaner
+ to add more plots to the reel without having to bounce around and
+ keep track of a dozen different scale and axis variables.
+
+ * would be nice to jitter or spread out the residuals so the bars
+ don't overlap like on the fourth dataset.
+
+ * no configuration accessors keeps this from being particularly
+ resuable by anybody else, but that's the other side of that line
+ i drew in going for that middle ground. other homework awaits!
+
+ * several details are hard-coded, like the color scale and the
+ size and styling of different elements.
+
+ * if [jstat](http://jstat.github.io/) or [simple
+ statistics](https://github.com/tmcw/simple-statistics) had a cook's
+ distance function we could take arbitrary datasets and render them
+ all inline, or at least as part of the reusable graph.
+
+Always good to have something to work on next.
