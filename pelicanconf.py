@@ -45,7 +45,8 @@ PLUGIN_PATHS = [
     ]
 PLUGINS = [
     'liquid_tags.liquid_tags',
-    'liquid_tags.notebook',
+    #'liquid_tags.notebook',
+    'sitemap',
     ]
 
 ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}/'
@@ -56,8 +57,11 @@ YEAR_ARCHIVE_SAVE_AS = '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 
 ARCHIVES_SAVE_AS = ''
+AUTHOR_SAVE_AS = ''
 AUTHORS_SAVE_AS = ''
+CATEGORY_SAVE_AS = ''
 CATEGORIES_SAVE_AS = ''
+#TAG_SAVE_AS = ''
 TAGS_SAVE_AS = ''
 
 DISPLAY_PAGES_ON_MENU = False
@@ -74,6 +78,20 @@ EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
 NOTEBOOK_DIR = '/Users/dchud/projects/data.onebiglibrary.net/content/notebooks'
 
 GOOGLE_ANALYTICS = ''
+
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.5,
+        'indexes': 0.5,
+        'pages': 0.5,
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly'
+    }
+}
 
 try:
     from pelicanconflocal import *
