@@ -14,28 +14,22 @@ TIMEZONE = 'America/New_York'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = 'feeds/%s.atom.xml'
+FEED_DOMAIN = SITEURL
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
 FEED_ALL_RSS = None
 CATEGORY_FEED_ATOM = None
+CATEGORY_FEED_RSS = None
 TAG_FEED_ATOM = None
+TAG_FEED_RSS = None
 TRANSLATION_FEED_ATOM = None
+TRANSLATION_FEED_RSS = None
 
 STATIC_PATHS = ['data', 'images']
-
-# Blogroll
-#LINKS = (('Pelican', 'http://getpelican.com/'),
-#         ('Python.org', 'http://python.org/'),
-#         ('Jinja2', 'http://jinja.pocoo.org/'),
-#         ('You can modify those links in your config file', '#'),)
-
-# Social widget
-#SOCIAL = (('You can add links in your config file', '#'),
-#          ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 0
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+RELATIVE_URLS = False
 
 THEME = 'theme' # 'simple' # 'blueidea' # 'notmyidea'
 
@@ -43,9 +37,10 @@ PLUGIN_PATHS = [
     'plugins', 
     '/Users/dchud/projects/pelican-plugins',
     ]
+
 PLUGINS = [
     'liquid_tags.liquid_tags',
-    #'liquid_tags.notebook',
+    'liquid_tags.notebook',
     'sitemap',
     ]
 
