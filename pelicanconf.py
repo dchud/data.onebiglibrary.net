@@ -2,8 +2,7 @@
 
 AUTHOR = 'dchud'
 SITENAME = 'data.onebiglibrary.net'
-#SITEURL = 'http://localhost:8000'
-SITEURL = 'http://data.onebiglibrary.net'
+SITEURL = ''
 
 PATH = 'content'
 
@@ -27,8 +26,7 @@ STATIC_PATHS = ['data', 'images', 'posts']
 
 DEFAULT_PAGINATION = 0
 
-# Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = False
+RELATIVE_URLS = True
 
 THEME = 'theme'
 
