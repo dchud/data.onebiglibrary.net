@@ -1,0 +1,17 @@
+[project]
+name = "data-onebiglibrary-net"
+version = "2026.1"
+description = "data.onebiglibrary.net pelican blog"
+requires-python = ">=3.13"
+dependencies = [
+    "pelican[markdown]>=4.11",
+    "pelican-sitemap",
+    "s3cmd",
+]
+
+[tool.setuptools]
+py-modules = []
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

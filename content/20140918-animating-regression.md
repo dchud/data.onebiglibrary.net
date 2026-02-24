@@ -8,11 +8,11 @@ post](http://data.onebiglibrary.net/2014/08/12/things-to-know-about-data-science
 you can't just stop at the fit plot, even if it is pretty (here
 courtesy of SAS):
 
-![regression plot]({filename}images/20140812-things/b3-simple-regression-plot.png)
+![regression plot]({static}images/20140812-things/b3-simple-regression-plot.png)
 
 You have to review its diagnostics:
 
-![regression diagnostics]({filename}images/20140812-things/b3-simple-regression-diag.png)
+![regression diagnostics]({static}images/20140812-things/b3-simple-regression-diag.png)
 
 Typically in a set of diagnostic plots like this, you look first
 at the top left chart to see if the residuals balance around 0. The

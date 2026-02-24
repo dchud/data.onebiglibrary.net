@@ -24,13 +24,10 @@
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
-    {% if FEED_RSS %}
-    <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
-    {% endif %}
+    <link href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
 
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </head>
 
@@ -47,8 +44,6 @@
                 <i class='fa fa-angle-right'></i>
                 <a href='/colophon.html'>colophon</a>
                 <i class='fa fa-angle-right'></i>
-                <a href='https://twitter.com/dchud' alt='twitter' title='twitter'><i class='fa fa-twitter fa-lg'></i></a>
-                <i class='fa fa-angle-right'></i>
                 <a href='https://github.com/dchud' alt='github' title='github'><i class='fa fa-github fa-lg'></i></a>
                 <i class='fa fa-angle-right'></i>
                 <a href='http://www.linkedin.com/pub/daniel-chudnov/a2/652/12a/' alt='linked in' title='linked in'><i class='fa fa-linkedin fa-lg'></i></a>
@@ -64,8 +59,6 @@
 
 
     {% include 'analytics.html' %}
-    {% include 'piwik.html' %}
-    {% include 'disqus_script.html' %}
 
   </body>
 </html>
