@@ -54,15 +54,17 @@ For YouTube embeds, use an iframe directly in the markdown:
 ## Building locally
 
 ```bash
-make html          # generate the site
-make serve         # serve at http://localhost:8000
-make devserver     # serve with auto-reload
+just html          # generate the site
+just serve         # serve at http://localhost:8000
+just devserver     # serve with auto-reload
 ```
+
+Pass extra pelican flags as needed: `just html -D` for debug mode.
 
 ## Deploying to S3
 
 ```bash
-make s3_upload     # builds with publishconf.py, then syncs to S3
+just s3_upload     # builds with publishconf.py, then syncs to S3
 ```
 
 Requires s3cmd credentials configured separately (`s3cmd --configure`).
