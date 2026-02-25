@@ -58,3 +58,6 @@ ENV
 cache
 output
 pelicanconflocal.py
+.venv/
+.python-version
+.env

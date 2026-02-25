@@ -527,7 +527,7 @@ This seems about right. Some additional changes proved necessary:
  awkward, detracting from the intended narrative. This temporary
  mistake evokes that awkwardness:
 
- ![this temporary mistake]({filename}images/20141112-anscombe-error.png) 
+ ![this temporary mistake]({static}images/20141112-anscombe-error.png) 
 
 
 ### Left as an exercise for the writer

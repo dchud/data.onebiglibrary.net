@@ -1,17 +1,14 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- #
-from __future__ import unicode_literals
 
-AUTHOR = u'dchud'
-SITENAME = u'data.onebiglibrary.net'
-#SITEURL = 'http://localhost:8000'
-SITEURL = 'http://data.onebiglibrary.net'
+AUTHOR = 'dchud'
+SITENAME = 'data.onebiglibrary.net'
+SITEURL = ''
 
 PATH = 'content'
 
 TIMEZONE = 'America/New_York'
 
-DEFAULT_LANG = u'en'
+DEFAULT_LANG = 'en'
 
 # Feed generation is usually not desired when developing
 FEED_DOMAIN = SITEURL
@@ -24,25 +21,16 @@ TAG_FEED_RSS = None
 TRANSLATION_FEED_ATOM = None
 TRANSLATION_FEED_RSS = None
 
-STATIC_PATHS = ['data', 'images']
+ARTICLE_PATHS = ['', 'posts']
+STATIC_PATHS = ['data', 'images', 'posts']
 
 DEFAULT_PAGINATION = 0
 
-# Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = False
+RELATIVE_URLS = True
 
-THEME = 'theme' # 'simple' # 'blueidea' # 'notmyidea'
+THEME = 'theme'
 
-PLUGIN_PATHS = [
-    'plugins', 
-    '/Users/dchud/projects/pelican-plugins',
-    ]
-
-PLUGINS = [
-    'liquid_tags.liquid_tags',
-    'liquid_tags.notebook',
-    'sitemap',
-    ]
+PLUGINS = ['sitemap']
 
 ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
@@ -62,17 +50,12 @@ TAGS_SAVE_AS = ''
 DISPLAY_PAGES_ON_MENU = False
 DISPLAY_CATEGORIES_ON_MENU = False
 
-DEFAULT_CATEGORY = ''
+DEFAULT_CATEGORY = 'misc'
 
-#TWITTER_USERNAME = 'dchud'
-
-FILENAME_METADATA = '(?P<date>\d{4}\d{2}\d{2})-(?P<slug>.*)'
+FILENAME_METADATA = r'(?P<date>\d{4}\d{2}\d{2})-(?P<slug>.*)'
+PATH_METADATA = r'posts/(?P<date>\d{8})-(?P<slug>[^/]+)/.*'
 DEFAULT_DATE_FORMAT = '%Y-%m-%d'
 
-EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
-NOTEBOOK_DIR = '/Users/dchud/projects/data.onebiglibrary.net/content/notebooks'
-
-GOOGLE_ANALYTICS = ''
 
 SITEMAP = {
     'format': 'xml',
@@ -90,5 +73,5 @@ SITEMAP = {
 
 try:
     from pelicanconflocal import *
-except:
-    print 'No local settings found.'
+except ImportError:
+    print('No local settings found.')
