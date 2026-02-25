@@ -36,6 +36,10 @@ publish *opts:
 s3_upload: publish
     s3cmd sync {{ outputdir }}/ s3://{{ s3_bucket }} --acl-public --delete-removed --guess-mime-type
 
+# open Goatcounter analytics dashboard
+stats:
+    open https://data-obl-net.goatcounter.com/
+
 # scaffold a new post: just new My Cool Post
 new +title:
     #!/usr/bin/env bash
