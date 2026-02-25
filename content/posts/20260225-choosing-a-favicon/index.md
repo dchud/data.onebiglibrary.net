@@ -47,7 +47,8 @@ choices (see Albers color study posts from 2014). Took a few minutes
 to figure it out, but it's basically the same design as the old
 [del.icio.us icon](https://en.wikipedia.org/wiki/Delicious_(website)),
 just with the Albers study colors taken from those prior posts.
-Seemed like a good fit.
+Seemed like a good fit. I don't know if joshu is still out there, but I hope
+he's been good, and I hope he doesn't mind.
 
 Everything below this sentence was bot-generated.
 
@@ -70,15 +71,12 @@ different Albers study from the earlier posts.
 
 ## Option 1: Nested Squares
 
-![nested squares]({attach}favicon-nested.svg)
-
-<img src="{attach}favicon-nested.svg" width="128" height="128" alt="nested squares at 128px" />
-<img src="{attach}favicon-nested.svg" width="32" height="32" alt="nested squares at 32px" />
-<img src="{attach}favicon-nested.svg" width="16" height="16" alt="nested squares at 16px" />
+<img src="{attach}favicon-nested.svg" width="128" height="128" alt="nested squares at 128px" /> <img src="{attach}favicon-nested.svg" width="64" height="64" alt="nested squares at 64px" /> <img src="{attach}favicon-nested.svg" width="32" height="32" alt="nested squares at 32px" /> <img src="{attach}favicon-nested.svg" width="16" height="16" alt="nested squares at 16px" />
 
 Three concentric squares: deep purple, red-orange, yellow. This echoes
-the very first Albers exercise on the site — placing one color inside
-another to see how the surround changes your perception of the inner
+the very first Albers exercise on the site —
+[placing one color inside another]({filename}/posts/20140808-simple-color-relationships/index.md)
+to see how the surround changes your perception of the inner
 color. The nesting reads well at small sizes because the contrast
 between the three layers is high. At 16px the innermost square is
 only a few pixels across, but the warm-to-cool progression still
@@ -87,14 +85,11 @@ registers.
 
 ## Option 2: Offset Overlap
 
-![offset overlap]({attach}favicon-overlap.svg)
-
-<img src="{attach}favicon-overlap.svg" width="128" height="128" alt="offset overlap at 128px" />
-<img src="{attach}favicon-overlap.svg" width="32" height="32" alt="offset overlap at 32px" />
-<img src="{attach}favicon-overlap.svg" width="16" height="16" alt="offset overlap at 16px" />
+<img src="{attach}favicon-overlap.svg" width="128" height="128" alt="offset overlap at 128px" /> <img src="{attach}favicon-overlap.svg" width="64" height="64" alt="offset overlap at 64px" /> <img src="{attach}favicon-overlap.svg" width="32" height="32" alt="offset overlap at 32px" /> <img src="{attach}favicon-overlap.svg" width="16" height="16" alt="offset overlap at 16px" />
 
 Two overlapping rectangles — teal and yellow — with a mint intersection
-zone. This one references the transparency and optical mixture studies,
+zone. This one references the
+[transparency and optical mixture studies]({filename}/posts/20140808-simple-color-relationships/index.md),
 where Albers demonstrated that you can simulate the appearance of
 overlapping translucent layers using nothing but flat, opaque color.
 The intersection is the key: it's a third color that your eye reads
@@ -109,11 +104,7 @@ favicon scale.
 
 ## Option 3: Four-Patch Grid
 
-![four-patch grid]({attach}favicon-grid.svg)
-
-<img src="{attach}favicon-grid.svg" width="128" height="128" alt="four-patch grid at 128px" />
-<img src="{attach}favicon-grid.svg" width="32" height="32" alt="four-patch grid at 32px" />
-<img src="{attach}favicon-grid.svg" width="16" height="16" alt="four-patch grid at 16px" />
+<img src="{attach}favicon-grid.svg" width="128" height="128" alt="four-patch grid at 128px" /> <img src="{attach}favicon-grid.svg" width="64" height="64" alt="four-patch grid at 64px" /> <img src="{attach}favicon-grid.svg" width="32" height="32" alt="four-patch grid at 32px" /> <img src="{attach}favicon-grid.svg" width="16" height="16" alt="four-patch grid at 16px" />
 
 A 2x2 grid of colored squares: pink, red, green, grey. These are
 the four colors from the juxtaposition study in the
@@ -130,15 +121,12 @@ visual rhythm — it reads as a deliberate pattern, not a smudge.
 
 ## Option 4: Stacked Bands
 
-![stacked bands]({attach}favicon-bands.svg)
-
-<img src="{attach}favicon-bands.svg" width="128" height="128" alt="stacked bands at 128px" />
-<img src="{attach}favicon-bands.svg" width="32" height="32" alt="stacked bands at 32px" />
-<img src="{attach}favicon-bands.svg" width="16" height="16" alt="stacked bands at 16px" />
+<img src="{attach}favicon-bands.svg" width="128" height="128" alt="stacked bands at 128px" /> <img src="{attach}favicon-bands.svg" width="64" height="64" alt="stacked bands at 64px" /> <img src="{attach}favicon-bands.svg" width="32" height="32" alt="stacked bands at 32px" /> <img src="{attach}favicon-bands.svg" width="16" height="16" alt="stacked bands at 16px" />
 
 Four horizontal bands progressing from dark olive to bright yellow.
-This references the middle mixture and light intensity studies, where
-Albers explored how adjacent colors of similar value seem to merge
+This references the
+[middle mixture and light intensity studies]({filename}/posts/20140904-albers-color-studies-part-2/index.md),
+where Albers explored how adjacent colors of similar value seem to merge
 while colors with strong value contrast maintain their boundaries.
 
 The bands are clean and simple, but at 16px the four-step gradient
