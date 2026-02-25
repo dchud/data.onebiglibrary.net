@@ -48,6 +48,8 @@ Place images and data files alongside `index.md` and reference them with
 ![chart]({attach}chart.png)
 ```
 
+`just latest` prints the slug of the most recent draft post.
+
 For posts with many screenshots, drop the images in the post directory and
 run:
 
@@ -58,8 +60,6 @@ just images 20260225-my-post  # or specify a post slug directly
 
 This appends `![name]({attach}filename)` lines for any images not already
 referenced in the post.
-
-`just latest` prints the slug of the most recent draft post.
 
 For YouTube embeds, use an iframe directly in the markdown:
 
