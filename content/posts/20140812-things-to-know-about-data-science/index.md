@@ -208,11 +208,11 @@ First, we import data in an attempt to find a relationship between
 age and weight. The data looks like this (thanks,
 [csvkit](https://csvkit.readthedocs.org/en/0.8.0/)!):
 
-![a few lines of data]({static}images/20140812-things/csvlook.png)
+![a few lines of data]({attach}csvlook.png)
 
 A simple regression offers these results:
 
-![regression results]({static}images/20140812-things/b3-simple-regression-table.png)
+![regression results]({attach}b3-simple-regression-table.png)
 
 Every stats app has a report format like this; SAS likes HTML tables.
 Important details in here are the p-value of the F test result, the
@@ -220,15 +220,15 @@ R-Square, and the p-value of the t test on the dependent variable age.
 
 The plot is pretty:
 
-![regression plot]({static}images/20140812-things/b3-simple-regression-plot.png)
+![regression plot]({attach}b3-simple-regression-plot.png)
 
 But we have to review its diagnostics:
 
-![regression diagnostics]({static}images/20140812-things/b3-simple-regression-diag.png)
+![regression diagnostics]({attach}b3-simple-regression-diag.png)
 
 And check residuals precisely:
 
-![regression residuals]({static}images/20140812-things/b3-simple-regression-residuals-b.png)
+![regression residuals]({attach}b3-simple-regression-residuals-b.png)
 
 To be a good data scientist, you have to work any model through all
 of these steps, knowing which tests to run on results. Every model
@@ -242,7 +242,7 @@ with straightforward tools. For example, this is a time series of
 the amount of recent airline travel in the US. In just a few lines 
 of R, you can produce this decomposition of seasonal and trend lines:
 
-![time series decomposition]({static}images/20140812-things/ts-decomp.png)
+![time series decomposition]({attach}ts-decomp.png)
 
 This is wonderful, but keep in mind that there is always more to the
 story. The simplest-seeming models and tools often require a lot of

@@ -21,8 +21,8 @@ TAG_FEED_RSS = None
 TRANSLATION_FEED_ATOM = None
 TRANSLATION_FEED_RSS = None
 
-ARTICLE_PATHS = ['', 'posts']
-STATIC_PATHS = ['data', 'images', 'posts']
+ARTICLE_PATHS = ['posts']
+STATIC_PATHS = ['data', 'posts']
 
 DEFAULT_PAGINATION = 0
 
