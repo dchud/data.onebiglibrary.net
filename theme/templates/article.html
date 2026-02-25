@@ -2,34 +2,25 @@
 {% block title %}{{ article.title }}{% endblock %}
 {% block content %}
 <section id="content">
-    <script>
-    function github_link (link_type) {
-        var github_base = "https://raw.githubusercontent.com/dchud/data.onebiglibrary.net/master/content/";
-        if(link_type == 'edit') {
-            github_base = "https://github.com/dchud/data.onebiglibrary.net/edit/master/content/";
-        }
-        var path = "{{ article }}";
-        var path_segments = path.split('/');
-        var basename = path_segments[path_segments.length-1];
-        var href = github_base + basename ;
-        return href;
-    }
-    </script>
     <article>
         <header>
             <h2>{{ article.title}}</h2>
             <p class='small'>
                 Published {{ article.date.strftime('%x') }}
                 <i class='fa fa-angle-right'></i>
-                <a href='javascript:open(github_link("view"));' alt='view source' title='view source'><i class='fa fa-file-text-o fa-lg'></i></a>
+                <a href='https://github.com/dchud/data.onebiglibrary.net/blob/main/content/{{ article.relative_source_path }}' title='view source'><i class='fa fa-file-text-o fa-lg'></i></a>
                 <i class='fa fa-angle-right'></i>
-                <a href='javascript:open(github_link("edit"));' alt='edit in github' title='edit in github'><i class='fa fa-pencil fa-lg'></i></a>
+                <a href='https://github.com/dchud/data.onebiglibrary.net/edit/main/content/{{ article.relative_source_path }}' title='edit in github'><i class='fa fa-pencil fa-lg'></i></a>
             </p>
         </header>
         <div class="entry-content">
         {{ article.content }}
         </div><!-- /.entry-content -->
     </article>
+
+<hr>
+<div id="webmentions" data-url="{{ SITEURL }}/{{ article.url }}"></div>
+<script src="{{ SITEURL }}/theme/js/webmentions.js" async></script>
 
 <hr>
 {% for a in articles %}
