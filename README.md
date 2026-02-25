@@ -48,6 +48,19 @@ Place images and data files alongside `index.md` and reference them with
 ![chart]({attach}chart.png)
 ```
 
+For posts with many screenshots, drop the images in the post directory and
+run:
+
+```bash
+just images $(just latest)    # add markup for the latest draft
+just images 20260225-my-post  # or specify a post slug directly
+```
+
+This appends `![name]({attach}filename)` lines for any images not already
+referenced in the post.
+
+`just latest` prints the slug of the most recent draft post.
+
 For YouTube embeds, use an iframe directly in the markdown:
 
 ```html
@@ -77,5 +90,6 @@ Requires AWS CLI configured (`aws configure`) with Amplify permissions.
 
 ## Legacy content
 
-Old flat articles in `content/` (e.g. `content/20140812-my-post.md`) still
-work. New posts should use the `content/posts/` directory structure.
+All posts now use the `content/posts/YYYYMMDD-slug/` directory structure.
+Two JSON data files remain at `content/data/` for legacy D3 visualizations
+that reference them via hardcoded `/data/...` paths in inline JavaScript.

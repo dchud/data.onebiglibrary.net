@@ -99,3 +99,34 @@ new +title:
     -->
     TEMPLATE
     echo "Created $dir/index.md"
+
+# print the slug of the most recent draft
+latest:
+    @grep -rl '^Status:.*draft' {{ inputdir }}/posts/*/index.md | sort | tail -1 | sed 's|.*/posts/||;s|/index.md||'
+
+# append image markup for unlinked images: just images 20260225-my-post
+images post:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    dir="{{ inputdir }}/posts/{{ post }}"
+    md="$dir/index.md"
+    if [ ! -f "$md" ]; then
+        echo "Error: $md not found" >&2
+        exit 1
+    fi
+    added=0
+    for img in "$dir"/*.{png,jpg,jpeg,gif,webp,svg}; do
+        [ -f "$img" ] || continue
+        name=$(basename "$img")
+        if ! grep -qF "$name" "$md"; then
+            echo "" >> "$md"
+            echo "![${name%.*}]({attach}$name)" >> "$md"
+            echo "  added $name"
+            added=$((added + 1))
+        fi
+    done
+    if [ "$added" -eq 0 ]; then
+        echo "No new images to add."
+    else
+        echo "Added $added image(s) to $md"
+    fi
