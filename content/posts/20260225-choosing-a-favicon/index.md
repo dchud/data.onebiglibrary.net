@@ -6,7 +6,7 @@ This [Pelican](https://getpelican.com/) blog has sat still since about 2014.
 I used to publish it to an S3 bucket with static hosting turned on. I've been
 thinking about establishing a new place to write lately, then remembered this
 was already here, and the domain kinda covers my professional interests still,
-so I went with it. But reconning it into contemporary versions of things wasn't
+so I went with it. But retconning it into contemporary versions of things wasn't
 a straightforward task. Not an overwhelmingly hard task, or very large, but it
 was a bunch of stuff that had to change a little all at once.
 
@@ -32,11 +32,11 @@ Fiddly tiny blog migration project? I know a thing that will help me get that
 done a lot faster than I could myself. It created [this pull
 request](https://github.com/dchud/data.onebiglibrary.net/pull/1) to modernize
 the environment, and [this pull
-request](https://github.com/dchud/data.onebiglibrary.net/pull/2) to recon old
+request](https://github.com/dchud/data.onebiglibrary.net/pull/2) to retcon old
 posts into the new structure. It coached me on getting migrated to a new hosting
 platform and updating DNS. Darned thing just worked, dang it all.
 
-I was testing the reconned content and noticed a warning about lacking
+I was testing the retconned content and noticed a warning about lacking
 a favicon. What to do? I asked for proposals. Thoughtfully it reached into my
 older content and came up with good ideas, so I asked it to draft the rest of
 this post for content.
