@@ -56,7 +56,6 @@ FILENAME_METADATA = r'(?P<date>\d{4}\d{2}\d{2})-(?P<slug>.*)'
 PATH_METADATA = r'posts/(?P<date>\d{8})-(?P<slug>[^/]+)/.*'
 DEFAULT_DATE_FORMAT = '%Y-%m-%d'
 
-GOOGLE_ANALYTICS = ''
 
 SITEMAP = {
     'format': 'xml',
