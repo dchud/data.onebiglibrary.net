@@ -6,17 +6,24 @@ Pelican-based data blog. Python 3.13+, Pelican 4.11+.
 
 ```bash
 pyenv install 3.13.12
-uv venv && uv pip install -e .
-# or: uv pip install 'pelican[markdown]>=4.11' pelican-sitemap s3cmd
+uv sync
 ```
 
 ## Writing a new post
 
-Create a directory under `content/posts/` with the naming convention
-`YYYYMMDD-slug/`:
+```bash
+just new My Cool Post
+```
+
+This creates a directory under `content/posts/` using today's date and a
+slugified title (e.g. `content/posts/20260224-my-cool-post/`) with a
+templated `index.md` ready to edit. Date and slug are extracted from the
+directory name automatically.
+
+The resulting structure looks like:
 
 ```
-content/posts/20260224-my-new-post/
+content/posts/20260224-my-cool-post/
   index.md
   hero.jpg
   screenshots/
@@ -26,12 +33,10 @@ content/posts/20260224-my-new-post/
 `index.md` needs a title at minimum:
 
 ```markdown
-Title: My new post
+Title: My Cool Post
 
 Post content here.
 ```
-
-Date and slug are extracted from the directory name automatically.
 
 ## Adding media
 
@@ -61,13 +66,14 @@ just devserver     # serve with auto-reload
 
 Pass extra pelican flags as needed: `just html -D` for debug mode.
 
-## Deploying to S3
+## Deploying to Amplify
 
 ```bash
-just s3_upload     # builds with publishconf.py, then syncs to S3
+cp .env.example .env   # then fill in your AMPLIFY_APP_ID
+just deploy            # builds with publishconf.py, then deploys to Amplify
 ```
 
-Requires s3cmd credentials configured separately (`s3cmd --configure`).
+Requires AWS CLI configured (`aws configure`) with Amplify permissions.
 
 ## Legacy content
 

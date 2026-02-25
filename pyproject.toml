@@ -6,7 +6,6 @@ requires-python = ">=3.13"
 dependencies = [
     "pelican[markdown]>=4.11",
     "pelican-sitemap",
-    "s3cmd",
 ]
 
 [tool.setuptools]

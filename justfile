@@ -1,8 +1,11 @@
+set dotenv-load
+
 inputdir := justfile_directory() / "content"
 outputdir := justfile_directory() / "output"
 conffile := justfile_directory() / "pelicanconf.py"
 publishconf := justfile_directory() / "publishconf.py"
-s3_bucket := "data.onebiglibrary.net"
+amplify_app_id := env("AMPLIFY_APP_ID", "")
+amplify_branch := "main"
 
 # show available recipes
 default:
@@ -32,9 +35,33 @@ devserver port="8000" *opts:
 publish *opts:
     uv run pelican {{ inputdir }} -o {{ outputdir }} -s {{ publishconf }} {{ opts }}
 
-# publish then upload to S3
-s3_upload: publish
-    s3cmd sync {{ outputdir }}/ s3://{{ s3_bucket }} --acl-public --delete-removed --guess-mime-type
+# publish then deploy to Amplify
+deploy: publish
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [ -z "{{ amplify_app_id }}" ]; then
+        echo "Error: set AMPLIFY_APP_ID in your environment" >&2
+        exit 1
+    fi
+    echo "Zipping output..."
+    cd "{{ outputdir }}" && zip -qr ../site.zip .
+    cd "{{ justfile_directory() }}"
+    echo "Creating deployment..."
+    response=$(aws amplify create-deployment \
+        --app-id "{{ amplify_app_id }}" \
+        --branch-name "{{ amplify_branch }}")
+    upload_url=$(echo "$response" | jq -r '.zipUploadUrl')
+    job_id=$(echo "$response" | jq -r '.jobId')
+    echo "Uploading site.zip..."
+    curl -sf -T site.zip "$upload_url"
+    echo "Starting deployment (job $job_id)..."
+    aws amplify start-deployment \
+        --app-id "{{ amplify_app_id }}" \
+        --branch-name "{{ amplify_branch }}" \
+        --job-id "$job_id" > /dev/null
+    rm site.zip
+    echo "Deployed! Check status at:"
+    echo "  https://console.aws.amazon.com/amplify/apps/{{ amplify_app_id }}"
 
 # open Goatcounter analytics dashboard
 stats:
