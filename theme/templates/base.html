@@ -18,7 +18,23 @@
         div.entry-content {
             padding: 0;
         }
-        div.entry-content h2 {
+        div.entry-content p,
+        div.entry-content ul,
+        div.entry-content ol,
+        div.entry-content blockquote {
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        div.entry-content p:has(img) {
+            max-width: none;
+        }
+        div.entry-content h2,
+        div.entry-content h3,
+        div.entry-content h4 {
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
             margin-top: 1.5em;
             margin-bottom: .5em;
         }
