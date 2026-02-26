@@ -77,7 +77,7 @@ a news service. Sort of.
 [NetNewsWire](https://netnewswire.com/) has been around forever and works great,
 so I'm using it as my stand-in reader and collector. I keep adding stuff to it.
 There's so much good and interesting writing out there! For years I was locked
-into a well-known loop of checking the same 5-7 sites every day, all the time,
+into the well-known loop of checking the same 5-7 sites every day, all the time,
 and it gnawed at me for ages but now I can actually do something about it. And,
 in a way, it feels like I have to, considering the number one item on that site list
 basically doesn't exist any more.
