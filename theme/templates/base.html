@@ -4,8 +4,14 @@
     <meta charset="utf-8">
     <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
     <meta name="author" content="{{ AUTHOR }}">
+    {% block meta %}
+    <meta name="description" content="{{ SITENAME }}">
+    <meta property="og:site_name" content="{{ SITENAME }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ SITENAME }}">
+    <meta property="og:url" content="{{ SITEURL }}">
+    {% endblock %}
 
     <link rel="icon" type="image/svg+xml" href="{{ SITEURL }}/theme/img/favicon.svg">
 
