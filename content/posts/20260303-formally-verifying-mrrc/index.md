@@ -40,7 +40,7 @@ around the core MARC standards its obvious related standards like MARCXML, MODS,
 and BIBFRAME. Have a look at [the mrrc
 documentation](https://dchud.github.io/mrrc/) to see for yourself. What mrrc
 lacks is users, though. I mentioned it on the [code4lib
-slack](https://dchud.github.io/mrrc/) #python channel a few weeks ago and some
+slack](https://code4lib.org/slack/) #python channel a few weeks ago and some
 people were supportive, but I haven't heard back. It's okay, I know there are
 other tools that already do all this. And this is just an experiment.
 
